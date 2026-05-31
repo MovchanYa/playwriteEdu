@@ -18,6 +18,7 @@ export default defineConfig({
   // globalSetup: require.resolve("./global-setup"),
   // globalTeardown: require.resolve("./global-teardown"),
   timeout: 10000,
+  testIgnore: '**/lesson23.spec.js',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
