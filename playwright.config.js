@@ -17,7 +17,7 @@ export default defineConfig({
   outputDir: "test-results",
   // globalSetup: require.resolve("./global-setup"),
   // globalTeardown: require.resolve("./global-teardown"),
-  timeout: 30000,
+  timeout: 10000,
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -31,8 +31,12 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: "https://youtube.com",
+    baseURL: "https://qauto.forstudy.space",
 
+    httpCredentials: {
+      username: "guest",
+      password: "welcome2qauto",
+    },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: "on-first-retry",
   },
