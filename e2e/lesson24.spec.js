@@ -186,22 +186,22 @@ test.describe("pass fields", () => {
   });
 });
 
-test.describe("registration", () => {
+test.describe("registration and login attempt", () => {
   let reg;
   test.beforeEach(async ({ page }) => {
     reg = new RegistrationPage(page);
     await reg.navigate();
     await reg.regModal();
   });
+
   test("should register and login successfully", async ({ page }) => {
     const password = "Password123";
 
     uniqueEmail = await reg.registration(password);
-    await expect(page).toHaveURL(/garage/);
-
+    await expect(page).toHaveURL(/.*panel\/garage/);
     await reg.logout();
     await expect(page).toHaveURL("https://qauto.forstudy.space");
     await reg.loginViaUI(uniqueEmail, password);
-    await expect(page).toHaveURL(/garage/);
+    await expect(page).toHaveURL(/.*panel\/garage/);
   });
 });

@@ -2,19 +2,54 @@ import { test, expect } from "@playwright/test";
 export default class RegistrationPage {
   constructor(page) {
     this.page = page;
-    this.nameField = this.page.locator("#signupName");
-    this.lastNameField = this.page.locator("#signupLastName");
-    this.emailField = this.page.locator("#signupEmail");
-    this.passwordField = this.page.locator("#signupPassword");
-    this.repeatPasswordField = this.page.locator("#signupRepeatPassword");
+  }
 
-    this.loginButton = this.page.locator("button.header_signin");
-    this.error = this.page.locator(".invalid-feedback");
-    this.registerButton = this.page.locator('button:has-text("Register")');
-    this.modalTitle = this.page.locator(".modal-title");
-    this.logoutButton = this.page.locator(".icon-logout");
-    this.enterEmail = this.page.locator("#signinEmail");
-    this.enterPassword = this.page.locator("#signinPassword");
+  get nameField() {
+    return this.page.locator("#signupName");
+  }
+
+  get lastNameField() {
+    return this.page.locator("#signupLastName");
+  }
+
+  get emailField() {
+    return this.page.locator("#signupEmail");
+  }
+
+  get passwordField() {
+    return this.page.locator("#signupPassword");
+  }
+
+  get repeatPasswordField() {
+    return this.page.locator("#signupRepeatPassword");
+  }
+
+  get loginButton() {
+    return this.page.locator("button.header_signin");
+  }
+
+  get error() {
+    return this.page.locator(".invalid-feedback");
+  }
+
+  get registerButton() {
+    return this.page.locator('.modal-footer button:has-text("Register")');
+  }
+
+  get loginFormButton() {
+    return this.page.locator('button:has-text("Login")');
+  }
+
+  get logoutButton() {
+    return this.page.locator(".icon-logout");
+  }
+
+  get emailInField() {
+    return this.page.locator("#signinEmail");
+  }
+
+  get passwordInField() {
+    return this.page.locator("#signinPassword");
   }
 
   async navigate() {
@@ -97,6 +132,7 @@ export default class RegistrationPage {
     await this.emailField.fill(uniqueEmail);
     await this.passwordField.fill(userPassword);
     await this.repeatPasswordField.fill(userPassword);
+    await this.activeRegButton();
     await this.registerButton.click();
 
     return uniqueEmail;
@@ -109,15 +145,11 @@ export default class RegistrationPage {
     await this.loginButton.click();
   }
 
-  async clickLogin() {
-    await this.page.locator("button:has-text('Login')").click();
-  }
-
   async loginViaUI(email, password) {
     await this.navigate();
     await this.logModal();
-    await this.enterEmail.fill(email);
-    await this.enterPassword.fill(password);
-    await this.clickLogin();
+    await this.emailInField.fill(email);
+    await this.passwordInField.fill(password);
+    await this.loginFormButton.click();
   }
 }
