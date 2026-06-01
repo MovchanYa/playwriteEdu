@@ -12,7 +12,7 @@ test.describe("name fields", () => {
     await reg.regModal();
   });
 
-  test("emptyNameField", async ({ page }) => {
+  test("emptyNameField", async () => {
     await reg.nameField.fill("A");
     await reg.nameField.clear();
     await reg.deactivate();
@@ -21,7 +21,7 @@ test.describe("name fields", () => {
     await expect(reg.registerButton).toBeDisabled();
   });
 
-  test("wrongNameLengthBelow", async ({ page }) => {
+  test("wrongNameLengthBelow", async () => {
     await reg.nameField.fill("a");
     await reg.deactivate();
 
@@ -31,7 +31,7 @@ test.describe("name fields", () => {
     await reg.nameError();
   });
 
-  test("wrongData", async ({ page }) => {
+  test("wrongData", async () => {
     await reg.lastNameField.fill("!!");
     await reg.deactivate();
     await expect(reg.error).toHaveText("Last name is invalid");
@@ -39,21 +39,21 @@ test.describe("name fields", () => {
     await reg.disabledRegButton();
   });
 
-  test("wrongLengthBelow", async ({ page }) => {
+  test("wrongLengthBelow", async () => {
     await reg.lastNameField.fill("a");
     await reg.deactivate();
     await reg.lastNameErrorText();
     await reg.disabledRegButton();
   });
 
-  test("wrongLengthAbove", async ({ page }) => {
+  test("wrongLengthAbove", async () => {
     await reg.lastNameField.fill(`${longValue}`);
     await reg.deactivate();
     await reg.lastNameErrorText();
     await reg.disabledRegButton();
   });
 
-  test("redLastNameBorder", async ({ page }) => {
+  test("redLastNameBorder", async () => {
     await reg.lastNameField.fill("a");
     await reg.deactivate();
     await reg.lastNameErrorText();
@@ -68,7 +68,7 @@ test.describe("email fields", () => {
     await reg.navigate();
     await reg.regModal();
   });
-  test("emptyEmailField", async ({ page }) => {
+  test("emptyEmailField", async () => {
     await reg.emailField.fill("A");
     await reg.emailField.clear();
     await reg.deactivate();
@@ -76,14 +76,14 @@ test.describe("email fields", () => {
     await reg.disabledRegButton();
   });
 
-  test("wrongEmailData", async ({ page }) => {
+  test("wrongEmailData", async () => {
     await reg.emailField.fill("!!");
     await reg.deactivate();
     await reg.emailError();
     await reg.disabledRegButton();
   });
 
-  test("redEmailBorder", async ({ page }) => {
+  test("redEmailBorder", async () => {
     await reg.emailField.fill("a");
     await reg.deactivate();
     await reg.emailError();
@@ -98,7 +98,7 @@ test.describe("pass fields", () => {
     await reg.navigate();
     await reg.regModal();
   });
-  test("emptyPassField", async ({ page }) => {
+  test("emptyPassField", async () => {
     await reg.passwordField.fill("A");
     await reg.passwordField.clear();
     await reg.deactivate();
@@ -106,42 +106,42 @@ test.describe("pass fields", () => {
     await reg.disabledRegButton();
   });
 
-  test("wrongPassData", async ({ page }) => {
+  test("wrongPassData", async () => {
     await reg.passwordField.fill("!!");
     await reg.deactivate();
     await reg.passwordErrorText();
     await reg.disabledRegButton();
   });
 
-  test("redPassBorder", async ({ page }) => {
+  test("redPassBorder", async () => {
     await reg.passwordField.fill("a");
     await reg.deactivate();
     await reg.passwordError();
     await reg.disabledRegButton();
   });
 
-  test("wrongDataTooLong", async ({ page }) => {
+  test("wrongDataTooLong", async () => {
     await reg.passwordField.fill("Password123456789");
     await reg.deactivate();
     await reg.passwordErrorText();
     await reg.disabledRegButton();
   });
 
-  test("wrongDataNoCapital", async ({ page }) => {
+  test("wrongDataNoCapital", async () => {
     await reg.passwordField.fill("password123");
     await reg.deactivate();
     await reg.passwordErrorText();
     await reg.disabledRegButton();
   });
 
-  test("wrongDataNoInteger", async ({ page }) => {
+  test("wrongDataNoInteger", async () => {
     await reg.passwordField.fill("Password");
     await reg.deactivate();
     await reg.passwordErrorText();
     await reg.disabledRegButton();
   });
 
-  test("rePassEmpty", async ({ page }) => {
+  test("rePassEmpty", async () => {
     await reg.repeatPasswordField.fill("A");
     await reg.repeatPasswordField.clear();
     await reg.deactivate();
@@ -149,7 +149,7 @@ test.describe("pass fields", () => {
     await reg.disabledRegButton();
   });
 
-  test("passwordsDoNotMatch", async ({ page }) => {
+  test("passwordsDoNotMatch", async () => {
     await reg.passwordField.fill("Password123");
     await reg.repeatPasswordField.fill("Password456");
     await reg.deactivate();
@@ -157,28 +157,28 @@ test.describe("pass fields", () => {
     await reg.disabledRegButton();
   });
 
-  test("redRepeatPasswordBorder", async ({ page }) => {
+  test("redRepeatPasswordBorder", async () => {
     await reg.repeatPasswordField.fill("a");
     await reg.deactivate();
     await reg.repeatPasswordError();
     await reg.disabledRegButton();
   });
 
-  test("rePassTooLong", async ({ page }) => {
+  test("rePassTooLong", async () => {
     await reg.repeatPasswordField.fill("Password123456789");
     await reg.deactivate();
     await reg.repeatPasswordError();
     await reg.disabledRegButton();
   });
 
-  test("rePassNoCapital", async ({ page }) => {
+  test("rePassNoCapital", async () => {
     await reg.repeatPasswordField.fill("password123");
     await reg.deactivate();
     await reg.repeatPasswordError();
     await reg.disabledRegButton();
   });
 
-  test("rePassNoInteger", async ({ page }) => {
+  test("rePassNoInteger", async () => {
     await reg.repeatPasswordField.fill("Password");
     await reg.deactivate();
     await reg.repeatPasswordError();
