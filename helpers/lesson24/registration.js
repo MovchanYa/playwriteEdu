@@ -18,7 +18,7 @@ export default class RegistrationPage {
   }
 
   async navigate() {
-    await this.page.goto("https://qauto.forstudy.space");
+    await this.page.goto("/");
   }
   async nameError() {
     await expect(this.nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
