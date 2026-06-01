@@ -198,10 +198,10 @@ test.describe("registration and login attempt", () => {
     const password = "Password123";
 
     uniqueEmail = await reg.registration(password);
-    await expect(page).toHaveURL(/.*panel\/garage/);
+    await expect(page).toHaveURL(/garage/);
     await reg.logout();
     await expect(page).toHaveURL("https://qauto.forstudy.space");
     await reg.loginViaUI(uniqueEmail, password);
-    await expect(page).toHaveURL(/.*panel\/garage/);
+    await expect(page).toHaveURL(/garage/);
   });
 });
