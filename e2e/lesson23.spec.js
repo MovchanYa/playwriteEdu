@@ -3,7 +3,7 @@ import { youtubeSearch, cySearch } from "../helpers/lesson23/searchQuerys";
 
 test.describe("template spec", () => {
   test("passes", async ({ page }) => {
-    await page.goto("/");
+    await page.goto("https://www.youtube.com/");
 
     const searchForm = page.locator(".ytSearchboxComponentSearchForm input");
     await searchForm.click();
