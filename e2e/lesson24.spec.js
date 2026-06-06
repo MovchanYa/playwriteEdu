@@ -195,12 +195,12 @@ test.describe("registration and login attempt", () => {
   });
 
   test("should register and login successfully", async ({ page }) => {
-    const password = "Password123";
+    const password = process.env.USER_PASSWORD;
 
     uniqueEmail = await reg.registration(password);
     await expect(page).toHaveURL(/garage/);
     await reg.logout();
-    await expect(page).toHaveURL("https://qauto.forstudy.space");
+    await expect(page).toHaveURL(process.env.BASE_URL);
     await reg.loginViaUI(uniqueEmail, password);
     await expect(page).toHaveURL(/garage/);
   });
