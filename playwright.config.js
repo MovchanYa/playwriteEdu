@@ -19,7 +19,7 @@ export default defineConfig({
   // globalSetup: require.resolve("./global-setup"),
   // globalTeardown: require.resolve("./global-teardown"),
   timeout: 10000,
-  testIgnore: ["**/lesson23.spec.js", "**/example.spec.js"],
+  testIgnore: ["**/lesson23.spec.js", "**/example.spec.js", "lesson24.spec.js"],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -46,8 +46,17 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: "setup",
+      testMatch: /.*\.setup\.js/,
+    },
+
+    {
       name: "chromium",
-      use: { ...devices["Desktop Chrome"] },
+      use: {
+        ...devices["Desktop Chrome"],
+        storageState: ".auth/user.json",
+      },
+      dependencies: ["setup"],
     },
 
     // {

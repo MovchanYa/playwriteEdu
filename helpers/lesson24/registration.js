@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
-export default class RegistrationPage {
+import BasePage from "../BasePage";
+
+export default class RegistrationPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
   }
 
   get nameField() {
@@ -52,9 +54,6 @@ export default class RegistrationPage {
     return this.page.locator("#signinPassword");
   }
 
-  async navigate() {
-    await this.page.goto("/");
-  }
   async nameError() {
     await expect(this.nameField).toHaveCSS("border-color", "rgb(220, 53, 69)");
   }
