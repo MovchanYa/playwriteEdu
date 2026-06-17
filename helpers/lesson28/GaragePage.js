@@ -19,23 +19,23 @@ export default class GaragePage extends BasePage {
   }
 
   get garageHeader() {
-    return this.page.locator('h1', { hasText: 'Garage' });
+    return this.page.locator("h1", { hasText: "Garage" });
   }
 
   get brandSelect() {
-    return this.page.locator('#addCarBrand');
+    return this.page.locator("#addCarBrand");
   }
 
   get modelSelect() {
-    return this.page.locator('#addCarModel');
+    return this.page.locator("#addCarModel");
   }
 
   get mileageInput() {
-    return this.page.locator('#addCarMileage');
+    return this.page.locator("#addCarMileage");
   }
 
   get errorMessage() {
-    return this.page.locator('.invalid-feedback');
+    return this.page.locator(".invalid-feedback");
   }
 
   get submitCarButton() {
@@ -43,20 +43,20 @@ export default class GaragePage extends BasePage {
   }
 
   get expenseMileageInput() {
-    return this.page.locator('#addExpenseMileage');
+    return this.page.locator("#addExpenseMileage");
   }
 
   get litersInput() {
-    return this.page.locator('#addExpenseLiters');
+    return this.page.locator("#addExpenseLiters");
   }
 
   get costInput() {
-    return this.page.locator('#addExpenseTotalCost');
+    return this.page.locator("#addExpenseTotalCost");
   }
 
   async openFuelExpenseForCar(carName) {
-    const carItem = this.page.locator('.car-item', { hasText: carName });
-    await carItem.locator('.car_add-expense').click();
+    const carItem = this.page.locator(".car-item", { hasText: carName });
+    await carItem.locator(".car_add-expense").click();
   }
 
   async deactivate() {
@@ -71,13 +71,12 @@ export default class GaragePage extends BasePage {
     await this.brandSelect.selectOption({ index: 1 });
     await this.modelSelect.selectOption({ index: 1 });
 
-    await this.mileageInput.fill('1');
+    await this.mileageInput.fill("1");
     await this.mileageInput.clear();
     await this.deactivate();
     await expect(this.errorMessage).toHaveText("Mileage cost required");
 
-    await this.mileageInput.fill('200');
+    await this.mileageInput.fill("200");
     await this.submitCarButton.click();
-
   }
 }
