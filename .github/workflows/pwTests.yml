@@ -1,7 +1,6 @@
 name: Lesson 31
 run-name: Tests run
 on:
-  push:
   pull_request:
   workflow_dispatch:
 jobs:
